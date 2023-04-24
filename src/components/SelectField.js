@@ -15,7 +15,7 @@ const SelectField = ({ schema, updateFormData  }) => {
     setSelectedValue(event.target.value);
     console.log(typeof(updateFormData))
     // await onValueChange;
-    // updateFormData(schema.jsonKey, event.target.value);
+    updateFormData(schema.jsonKey, event.target.value);
     console.log("updateFormData in SelectField:", updateFormData);
   };
 
