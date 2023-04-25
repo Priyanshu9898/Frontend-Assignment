@@ -1,9 +1,23 @@
 import React from 'react'
+// import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import {Box, Text } from "@chakra-ui/react";
+import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Header = () => {
   return (
-    <div>Header</div>
+    <Box width={"100%"} display = "flex" alignItems={"center"} justifyContent={"space-between"}>
+        {/* First Part */}
+        <Box  display = "flex" alignItems={"center"} padding={["0px" , "20px"]} justifyContent={"space-between"} gap={"12px"}>
+            {/* <VerifiedUserIcon sx={{ fontSize: 80 }} /> */}
+            <Text fontSize={["2xl", '4xl']}>Form Maker</Text>
+        </Box>
+
+        {/* Second Part */}
+     
+        <ColorModeSwitcher />
+        
+    </Box>
   )
 }
 
-export default Header
+export default Header;

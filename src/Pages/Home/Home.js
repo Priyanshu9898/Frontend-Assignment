@@ -9,6 +9,7 @@ import {
   
 } from "@chakra-ui/react";
 import DynamicForm from "./DynamicForm";
+import Header from "../Header";
 
 
 const Home = () => {
@@ -51,6 +52,7 @@ const Home = () => {
 
   return (
     <>
+    <Header />
       <Grid templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"} gap={6}>
         <GridItem {...leftSideStyles}>
           <Textarea
