@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import {
   FormControl,
@@ -8,17 +8,19 @@ import {
   Tooltip,
 
 } from "@chakra-ui/react";
+import { FormDataContext } from "../Pages/Home/DynamicForm.js";
 
 const InputField = ({
-  schema,
-  updateFormData
+  schema
 }) => {
+
+  const updateFormData = useContext(FormDataContext);
+  
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
-    console.log("newValue", updateFormData);
     updateFormData(schema.jsonKey, newValue);
   };
 
