@@ -8,13 +8,14 @@ import {
   Tooltip,
 
 } from "@chakra-ui/react";
-import { FormDataContext } from "../Pages/Home/DynamicForm.js";
+
+import { useFormContext } from "../FormContext.js";
 
 const InputField = ({
   schema
 }) => {
 
-  const updateFormData = useContext(FormDataContext);
+  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
   
   const [value, setValue] = useState("");
 
@@ -26,7 +27,7 @@ const InputField = ({
 
   return (
     <>
-      <FormControl isRequired={schema.required} isDisabled={schema.disable} key={schema.jsonKey} marginTop={"5"}>
+      <FormControl isRequired={schema.validate.required} isDisabled={schema.disable} key={schema.jsonKey} marginTop={"5"}>
         <FormLabel>
           {schema.label}
           {schema.description.length > 0 && (
@@ -42,6 +43,9 @@ const InputField = ({
           onChange={handleChange}
           placeholder={schema.placeholder}
           name={schema.jsonKey ? schema.jsonKey: ""}
+          required={schema.validate?.required}
+          // isInvalid={schema.validate?.required && !formData[schema.jsonKey]}
+          errorBorderColor="red.500"
         />
         
       </FormControl>

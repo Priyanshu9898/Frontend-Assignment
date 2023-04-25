@@ -7,9 +7,10 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { FormDataContext } from "../Pages/Home/DynamicForm.js";
+import { useFormContext } from "../FormContext.js";
 
 const SwitchField = ({ schema }) => {
-  const updateFormData = useContext(FormDataContext);
+  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
   const [isChecked, setIsChecked] = React.useState(
     schema.validate.defaultValue
   );

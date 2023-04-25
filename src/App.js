@@ -1,10 +1,14 @@
-import React from 'react'
-import Home from './Pages/Home/Home';
-
+import React from "react";
+import Home from "./Pages/Home/Home";
+import { FormContextProvider } from "./FormContext.js";
 const App = () => {
   return (
-    <Home />
-  )
-}
+    <>
+      <FormContextProvider>
+        <Home />
+      </FormContextProvider>
+    </>
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,2 @@
+npm install --save react-json-view --legacy-peer-deps
+npm install @rjsf/core

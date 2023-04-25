@@ -15,20 +15,14 @@ import {
   ModalBody,
   Text,
 } from "@chakra-ui/react";
+import { useFormContext } from "../../FormContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Create a context for the form data and update function
-export const FormDataContext = React.createContext();
 
 const DynamicForm = ({ formSchema }) => {
-  const [formData, setFormData] = useState({});
-
-  const updateFormData = (jsonKey, value) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [jsonKey]: value,
-    }));
-  };
   
+  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
@@ -39,6 +33,35 @@ const DynamicForm = ({ formSchema }) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  }
+
+  const handleFormSubmit = () => {
+    // Perform custom validation here if needed
+    const isFormValid = formSchema.every((field) => {
+      if (field.validate?.required) {
+        return formData[field.jsonKey] !== undefined && formData[field.jsonKey] !== "";
+      }
+      return true;
+    });
+
+    if (isFormValid) {
+      handleOpenModal();
+    } else {
+      // Show error message or perform other actions for invalid form
+      toast.error("Please Enter all fields", toastOptions);
+    }
+  };
+  
 
   const renderJsonElements = (schema) => {
     return (
@@ -66,7 +89,7 @@ const DynamicForm = ({ formSchema }) => {
 
   return (
     <>
-      <FormDataContext.Provider value={updateFormData}>
+      
         <form>
           {formSchema.map((schema, index) => {
             return (
@@ -115,12 +138,14 @@ const DynamicForm = ({ formSchema }) => {
           })}
           {formSchema.length > 0 && (
             <Box style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-              <Button Button colorScheme='blue' marginTop={"10px"} onClick={handleOpenModal} >Submit</Button>
+              <Button Button colorScheme='blue' marginTop={"10px"} onClick={handleFormSubmit} >Submit</Button>
               {renderJsonElements(formData)}
             </Box>
           )}
         </form>
-      </FormDataContext.Provider>
+
+        <ToastContainer />
+
     </>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Select, FormControl, FormLabel } from "@chakra-ui/react";
 import { FormDataContext } from "../Pages/Home/DynamicForm.js";
+import { useFormContext } from "../FormContext.js";
 
 const SelectField = ({ schema }) => {
-  const updateFormData = useContext(FormDataContext);
+  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
   const [selectedValue, setSelectedValue] = React.useState(
     schema.validate.defaultValue
   );

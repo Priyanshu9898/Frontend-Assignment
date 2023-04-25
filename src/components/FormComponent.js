@@ -17,10 +17,11 @@ import InputField from "./InputField";
 import RadioField from "./RadioField";
 import SelectField from "./SelectField";
 import SwitchField from "./SwitchField";
-import { FormDataContext } from "../Pages/Home/DynamicForm";
+// import { FormDataContext } from "../Pages/Home/DynamicForm";
+import { useFormContext } from "../FormContext";
 
 const FormComponent = ({ schema }) => {
-  const updateFormData = useContext(FormDataContext);
+  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
 
   useEffect(() => {
     updateFormData(schema.jsonKey, schema.subParameters[0].validate.defaultValue);
