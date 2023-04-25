@@ -3,6 +3,10 @@
 
 ## Live Website: https://frontend-assignment-alpha.vercel.app/
 
+#### Example form JSON Schema 1: https://drive.google.com/file/d/1RUU_ueF9BbQRLReuX88w8PWe2jsz3Z3C/view
+
+#### Example form JSON Schema 2: https://drive.google.com/file/d/19_E6dSDUbiDR31wNSSvUARHxh1HeT6L4/view
+
 ## Project Description:
 
     The goal of this project is to create a React application using Chakra UI that allows users to paste a UI schema on the left side and preview the rendered form on the right-hand side. The UI schema is a JSON array that contains all the information required to generate dynamic forms. The application will have a single screen divided into two equal sections. The left section will contain a JSON editor where users can paste the UI schema, and the right section will automatically render a form based on the pasted UI schema.
