@@ -10,10 +10,10 @@ import DynamicForm from "./DynamicForm";
 import Header from "../Header";
 
 // FormContext.js
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
 import { useFormContext } from "../../FormContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const toastOptions = {
   position: "bottom-right",
@@ -24,7 +24,7 @@ const toastOptions = {
   draggable: true,
   progress: undefined,
   theme: "dark",
-}
+};
 
 const Home = () => {
   const [inputValue, setInputValue] = useState();
@@ -47,44 +47,43 @@ const Home = () => {
         setFormSchema(parsedFields);
       }
     } catch (error) {
-      console.error("Invalid JSON input");
+      toast.error("Invalid Form Schema", toastOptions);
     }
   };
 
-  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
+  const { handleResetData } = useFormContext();
 
   const handleReset = () => {
     setFormSchema([]);
     setInputValue("");
     handleResetData();
     toast.success("Form Reset Successfully", toastOptions);
-
   };
 
   return (
     <>
       <Header />
-  
-        <Grid templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"} gap={6}>
-          <GridItem {...leftSideStyles}>
-            <Textarea
-              value={inputValue}
-              placeholder="Paste UI schema here"
-              onChange={handleInputChange}
-              height="100vh"
-              resize="none"
-              // overflowY="scroll"
-              color="gray.100"
-              bg="gray.700"
-              fontSize={"20px"}
-            />
-          </GridItem>
 
-          <GridItem {...rightSideStyles}>
-            <Box borderWidth="1px" borderRadius="lg" p={4}>
-              <DynamicForm formSchema={formSchema} />
+      <Grid templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"} gap={6}>
+        <GridItem {...leftSideStyles}>
+          <Textarea
+            value={inputValue}
+            placeholder="Paste UI schema here"
+            onChange={handleInputChange}
+            height="100vh"
+            resize="none"
+            // overflowY="scroll"
+            color="gray.100"
+            bg="gray.700"
+            fontSize={"20px"}
+          />
+        </GridItem>
 
-              {formSchema.length > 0 && (
+        <GridItem {...rightSideStyles}>
+          {formSchema.length > 0 && (
+            <>
+              <Box borderWidth="1px" borderRadius="lg" p={4}>
+                <DynamicForm formSchema={formSchema} />
                 <Box
                   style={{
                     display: "flex",
@@ -101,12 +100,12 @@ const Home = () => {
                     Reset
                   </Button>
                 </Box>
-              )}
-            </Box>
-          </GridItem>
-        </Grid>
-        <ToastContainer />
-
+              </Box>
+            </>
+          )}
+        </GridItem>
+      </Grid>
+      <ToastContainer />
     </>
   );
 };

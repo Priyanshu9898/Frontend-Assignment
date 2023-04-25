@@ -1,27 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
   FormLabel,
-  FormHelperText,
   HStack,
   ButtonGroup,
   Button,
-  Select,
-  Input,
-  Switch,
-  Text,
+
 } from "@chakra-ui/react";
-import { InfoIcon } from "@chakra-ui/icons";
+
 import InputField from "./InputField";
-import RadioField from "./RadioField";
+
 import SelectField from "./SelectField";
 import SwitchField from "./SwitchField";
 // import { FormDataContext } from "../Pages/Home/DynamicForm";
 import { useFormContext } from "../FormContext";
 
 const FormComponent = ({ schema }) => {
-  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
+  const { updateFormData } = useFormContext();
 
   useEffect(() => {
     updateFormData(schema.jsonKey, schema.subParameters[0].validate.defaultValue);
@@ -31,14 +27,14 @@ const FormComponent = ({ schema }) => {
     schema.subParameters[0].validate.defaultValue
   );
 
+  
+
   const handleTabChange = (tabValue) => {
     setSelectedTab(tabValue);
+   
     updateFormData(schema.jsonKey, tabValue);
 
-    // If the selected button has subparameters, update the form data with the default values of the subparameters
-    const selectedButtonSchema = schema.subParameters.find(
-      (param) => param.jsonKey === tabValue
-    );
+    
 
   };
 

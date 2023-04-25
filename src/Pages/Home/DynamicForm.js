@@ -22,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const DynamicForm = ({ formSchema }) => {
   
-  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
+  const { formData, updateFormData } = useFormContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 

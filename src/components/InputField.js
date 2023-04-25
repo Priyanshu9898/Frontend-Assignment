@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
 import {
   FormControl,
@@ -15,7 +15,7 @@ const InputField = ({
   schema
 }) => {
 
-  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
+  const {  updateFormData } = useFormContext();
   
   const [value, setValue] = useState("");
 

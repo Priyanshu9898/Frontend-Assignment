@@ -6,12 +6,12 @@ import {
   HStack,
   Tooltip,
 } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormContext } from "../FormContext";
 // import { FormDataContext } from "../Pages/Home/DynamicForm.js";
 
 const RadioField = ({ schema }) => {
-  const { formData, setFormData, updateFormData, handleResetData } = useFormContext();
+  const {  updateFormData} = useFormContext();
   useEffect(() => {
     updateFormData(schema.jsonKey, schema.validate.defaultValue);
   }, []);
